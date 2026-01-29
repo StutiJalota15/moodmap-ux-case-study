@@ -1,6 +1,6 @@
 /* =========================
-   MoodMap Design System v1.2
-   (fixes spacing tokens + hero gaps + light topbar + flow alignment)
+   MoodMap Design System v1.3
+   (responsive carousel card + cleaner hero + safer spacing + better flow alignment)
    ========================= */
 
 :root{
@@ -37,7 +37,7 @@
 
   --container: 1120px;
 
-  /* ✅ spacing scale (WAS MISSING — caused broken padding/gaps) */
+  /* ✅ spacing scale */
   --s-1: 6px;
   --s-2: 10px;
   --s-3: 14px;
@@ -45,6 +45,9 @@
   --s-5: 24px;
   --s-6: 34px;
   --s-7: 56px;
+
+  /* ✅ layout constants */
+  --topbar-h: 64px;
 }
 
 /* Prevent weird overflow + accidental horizontal scroll */
@@ -140,11 +143,14 @@ a:hover{ opacity: 0.92; }
   outline-offset: 3px;
 }
 
-/* ✅ Topbar (was dark — now matches light theme) */
+/* ✅ Topbar (light + consistent height) */
 .topbar{
   position: sticky;
   top: 0;
   z-index: 50;
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   background: rgba(160,170,182,0.55);
@@ -157,6 +163,7 @@ a:hover{ opacity: 0.92; }
   justify-content:space-between;
   padding: 14px 0;
   gap: var(--s-4);
+  width: 100%;
 }
 
 .brand{
@@ -215,14 +222,16 @@ a:hover{ opacity: 0.92; }
 .hero__sub{ margin-top: var(--s-3); max-width: 58ch; }
 .hero__actions{ margin-top: var(--s-4); display:flex; gap: 12px; flex-wrap: wrap; }
 
-/* ✅ Sticky right column (fixes giant white gaps + bad alignment) */
+/* ✅ Sticky right column (prevents giant blank gaps + keeps preview visible) */
 .hero__right{
   position: sticky;
-  top: 86px;
+  top: calc(var(--topbar-h) + 18px);
   align-self: start;
   height: fit-content;
-  max-height: calc(100vh - 110px);
+  max-height: calc(100vh - (var(--topbar-h) + 34px));
   overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
 }
 
 .hero__preview{
@@ -289,6 +298,7 @@ a:hover{ opacity: 0.92; }
   display:grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: var(--s-5);
+  align-items: start;
 }
 .grid-2--equal{
   grid-template-columns: 1fr 1fr;
@@ -350,7 +360,7 @@ a:hover{ opacity: 0.92; }
 }
 .pill__t{ margin:0 0 6px 0; font-weight: 700; }
 
-/* ✅ Flow cards alignment fix (no forced tall min-height on small screens) */
+/* ✅ Flow cards alignment fix */
 .flowCard{
   display:flex;
   flex-direction: column;
@@ -367,16 +377,21 @@ a:hover{ opacity: 0.92; }
   border: 1px solid rgba(15,23,42,0.10);
   background: rgba(255,255,255,0.50);
   flex: 1;
+
   display:flex;
   align-items:center;
   justify-content:center;
   padding: var(--s-4);
 }
-.imgFrame--center img{
+
+/* Ensures both flow images center consistently */
+.imgFrame img{
   width: 100%;
   height: auto;
   object-fit: contain;
+  display: block;
 }
+
 .flowImg{
   max-height: 520px;
   width: 100%;
@@ -388,50 +403,76 @@ a:hover{ opacity: 0.92; }
   margin: 0 auto;
 }
 
-/* Carousel */
+/* =========================
+   ✅ Responsive Carousel Card (fits screen sizes)
+   ========================= */
+
 .carousel{ padding: var(--s-5); }
+
 .carousel__top{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap: var(--s-4);
   margin-bottom: var(--s-4);
+  flex-wrap: wrap;
 }
+
 .carousel__controls{ display:flex; gap: 10px; }
 
+/* Viewport is responsible for height (prevents overflow / weird gaps) */
 .carousel__viewport{
   overflow:hidden;
   border-radius: var(--r-2);
   border: 1px solid rgba(15,23,42,0.10);
   background: rgba(255,255,255,0.45);
+
+  /* 👇 key responsive height */
+  height: clamp(420px, 60vh, 720px);
 }
+
 .carousel__track{
   display:flex;
+  height: 100%;
   will-change: transform;
   transition: transform 320ms ease;
 }
+
 .carousel__slide{
   min-width: 100%;
-  padding: var(--s-4);
+  height: 100%;
+  padding: clamp(14px, 2.2vw, 24px);
   margin:0;
+
   display:grid;
-  place-items:center;
+  grid-template-rows: 1fr auto;
+  align-items:center;
+  justify-items:center;
   gap: 10px;
 }
+
 .carousel__slide img{
-  max-height: 560px;
   width: auto;
+  max-width: min(78%, 520px);
+  height: auto;
+
+  /* 👇 key: fits inside viewport */
+  max-height: calc(100% - 42px);
+
   border-radius: 18px;
   border: 1px solid rgba(15,23,42,0.10);
   box-shadow: 0 18px 60px rgba(2,6,23,0.16);
   background: rgba(255,255,255,0.60);
+  object-fit: contain;
 }
+
 .carousel__slide figcaption{
   color: var(--text-3);
   font-size: 13px;
   font-family: var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .carousel__dots{
@@ -441,6 +482,7 @@ a:hover{ opacity: 0.92; }
   margin-top: var(--s-4);
   flex-wrap: wrap;
 }
+
 .dot{
   width: 10px;
   height: 10px;
@@ -456,6 +498,16 @@ a:hover{ opacity: 0.92; }
   background: var(--grad-brand);
   opacity: 1;
   border-color: rgba(255,255,255,0.24);
+}
+
+/* Mobile tuning: bigger image, slightly shorter viewport */
+@media (max-width: 720px){
+  .carousel__viewport{
+    height: clamp(420px, 62vh, 640px);
+  }
+  .carousel__slide img{
+    max-width: 92%;
+  }
 }
 
 /* Footer */
