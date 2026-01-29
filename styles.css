@@ -1,10 +1,9 @@
 /* =========================
-   MoodMap Design System v1.3
-   (responsive carousel width fix + stable height)
+   (nav padding + button hover text fix + carousel centering + reduced screen width)
    ========================= */
 
 :root{
-  /* Light backdrop */
+  /* Light “ApplyWise-like” backdrop */
   --bg-0: #E9EEF1;
   --bg-1: rgba(255,255,255,0.55);
   --bg-2: rgba(255,255,255,0.78);
@@ -45,8 +44,13 @@
   --s-5: 24px;
   --s-6: 34px;
   --s-7: 56px;
+
+  /* Screen width control for carousel screenshots */
+  --screen-max-w: 520px;  
+  --screen-max-w-sm: 420px;
 }
 
+/* Prevent weird overflow + accidental horizontal scroll */
 html, body{ overflow-x: hidden; }
 
 body{
@@ -71,9 +75,32 @@ a{ color: inherit; text-decoration: none; }
 .section{ padding: var(--s-7) 0; }
 .section--tight{ padding: var(--s-6) 0; }
 
-/* =========================
-   Cards & UI
-   ========================= */
+.hr{
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(15,23,42,0.10), transparent);
+  margin: var(--s-6) 0;
+}
+
+.h1{ font-size: clamp(32px, 4vw, 52px); letter-spacing: -0.02em; line-height:1.08; margin:0; }
+.h2{ font-size: clamp(22px, 2.2vw, 30px); letter-spacing: -0.01em; margin:0; }
+.h3{ font-size: 18px; margin:0; }
+.p { color: var(--text-2); margin:0; }
+
+.kicker{
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 0 0 10px 0;
+}
+
+.grad{
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 .card{
   background: var(--bg-1);
@@ -81,8 +108,12 @@ a{ color: inherit; text-decoration: none; }
   border-radius: var(--r-3);
   box-shadow: var(--shadow-1);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
 }
 
+.pad{ padding: var(--s-5); }
+
+/* Buttons (fix hover text fade / disappear) */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -94,17 +125,291 @@ a{ color: inherit; text-decoration: none; }
   background: rgba(255,255,255,0.66);
   color: var(--text-1);
   cursor:pointer;
+  transition: transform 160ms ease, background 160ms ease, border 160ms ease, box-shadow 160ms ease;
+  font: inherit;
+  white-space: nowrap;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.78);
+  border-color: rgba(15,23,42,0.16);
+  color: var(--text-1); /* keep visible */
 }
 .btn--primary{
   background: var(--grad-brand);
-  color: #fff;
   border-color: rgba(255,255,255,0.24);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(91,124,255,0.20);
+}
+.btn--primary:hover{
+  color: #fff; /* keep visible */
+  box-shadow: 0 14px 34px rgba(91,124,255,0.24);
+}
+.btn:focus{
+  outline: 2px solid rgba(91,124,255,0.55);
+  outline-offset: 3px;
+}
+
+/*  Topbar (add side padding so it doesn’t touch screen edges) */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  background: rgba(160,170,182,0.55);
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+}
+
+/* Works even if you forgot to wrap with .container */
+.topbar__inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px var(--s-5);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: var(--s-4);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.brand__dot{
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  box-shadow: 0 0 0 4px rgba(91,124,255,0.12);
+}
+.brand__name{ font-weight: 700; letter-spacing: -0.01em; }
+.brand__sub{
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav{
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+.nav a{
+  color: var(--text-2);
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 160ms ease, border 160ms ease, color 160ms ease;
+}
+.nav a:hover{
+  color: var(--text-1);
+  border-color: rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.55);
+}
+
+.topbar__cta{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+}
+.topbar__cta .btn{ padding: 10px 14px; } /* keeps “View Screens” from looking huge */
+
+/* Hero */
+.hero{
+  padding-top: 40px;
+  padding-bottom: 36px;
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 28px;
+  align-items: start;
+}
+.hero__sub{ margin-top: var(--s-3); max-width: 58ch; }
+.hero__actions{ margin-top: var(--s-4); display:flex; gap: 12px; flex-wrap: wrap; }
+
+/* Sticky right column */
+.hero__right{
+  position: sticky;
+  top: 86px;
+  align-self: start;
+  height: fit-content;
+  max-height: calc(100vh - 110px);
+  overflow: auto;
+}
+
+.hero__preview{
+  border-radius: calc(var(--r-3) - 6px);
+  overflow:hidden;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.50);
+}
+.hero__preview img{
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+}
+
+.hero__rightMeta{
+  padding: var(--s-4);
+  display:grid;
+  gap: var(--s-3);
+}
+.meta__k{ margin:0; color: var(--text-3); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+.meta__v{ margin:0; color: var(--text-2); }
+
+.chips{ margin-top: var(--s-4); display:flex; gap: 10px; flex-wrap: wrap; }
+.chip{
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(15,23,42,0.10);
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.mini{ margin-top: var(--s-5); padding: var(--s-4); }
+.mini__row{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.mini__label{ margin:0; color: var(--text-3); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+.mini__value{ margin: 6px 0 0 0; color: var(--text-2); }
+
+@media (max-width: 980px){
+  .hero__grid{ grid-template-columns: 1fr; }
+  .hero__right{
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+  .mini__row{ grid-template-columns: 1fr; }
+  .nav{ display:none; }
+}
+
+/* Section head */
+.sectionHead{
+  display:grid;
+  gap: 10px;
+  margin-bottom: var(--s-5);
+  max-width: 78ch;
+}
+
+/* Layout helpers */
+.grid-2{
+  display:grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--s-5);
+}
+.grid-2--equal{
+  grid-template-columns: 1fr 1fr;
+}
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+  margin-top: var(--s-5);
+}
+@media (max-width: 960px){
+  .grid-2, .grid-2--equal{ grid-template-columns: 1fr; }
+  .grid-3{ grid-template-columns: 1fr; }
+}
+
+.list{
+  margin: 12px 0 0 18px;
+  padding:0;
+  color: var(--text-2);
+}
+.list li{ margin: 8px 0; }
+
+.callout{
+  margin-top: var(--s-5);
+  padding: var(--s-4);
+  display:flex;
+  gap: 14px;
+  align-items:flex-start;
+}
+.callout__icon{
+  width: 34px; height: 34px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(15,23,42,0.10);
+  display:grid;
+  place-items:center;
+}
+.callout__title{
+  margin:0 0 6px 0;
+  font-weight: 700;
+}
+
+.note{
+  margin-top: var(--s-4);
+  padding: 12px 14px;
+  border-radius: var(--r-2);
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.55);
+}
+.note__k{ margin:0; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
+.note__v{ margin:6px 0 0 0; }
+
+.stack{ display:grid; gap: 12px; margin-top: 12px; }
+.pill{
+  padding: 12px 14px;
+  border-radius: var(--r-2);
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.55);
+}
+.pill__t{ margin:0 0 6px 0; font-weight: 700; }
+
+/* Flow cards alignment fix */
+.flowCard{
+  display:flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+@media (max-width: 960px){
+  .flowCard{ min-height: auto; }
+}
+
+.imgFrame{
+  margin-top: var(--s-3);
+  border-radius: var(--r-2);
+  overflow:hidden;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.50);
+  flex: 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: var(--s-4);
+}
+.imgFrame--center img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.flowImg{
+  max-height: 520px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.flowImg--narrow{
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 /* =========================
-   Carousel (WIDTH FIX)
+   Carousel (center + width control)
    ========================= */
-
 .carousel{ padding: var(--s-5); }
 
 .carousel__top{
@@ -115,51 +420,56 @@ a{ color: inherit; text-decoration: none; }
   margin-bottom: var(--s-4);
 }
 
+.carousel__controls{ display:flex; gap: 10px; }
+
 .carousel__viewport{
   overflow:hidden;
   border-radius: var(--r-2);
   border: 1px solid rgba(15,23,42,0.10);
   background: rgba(255,255,255,0.45);
-
-  /* HEIGHT stays stable */
-  height: clamp(420px, 60vh, 720px);
 }
 
+/* track slides */
 .carousel__track{
   display:flex;
-  height: 100%;
   will-change: transform;
   transition: transform 320ms ease;
 }
 
+/* make slides true centered */
 .carousel__slide{
   min-width: 100%;
-  height: 100%;
-  padding: clamp(12px, 2vw, 20px);
+  padding: var(--s-4);
   margin:0;
-
-  display:grid;
-  grid-template-rows: 1fr auto;
+  display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-items:center;
+  justify-content:center;
   gap: 10px;
 }
 
-/* ✅ WIDTH REDUCED — HEIGHT UNCHANGED */
+/* reduce WIDTH (not height) + force perfect centering */
 .carousel__slide img{
-  width: auto;
+  width: min(var(--screen-max-w), 80vw);
+  max-width: 100%;
   height: auto;
-
-  /* THIS is the key fix */
-  max-width: clamp(260px, 34vw, 420px);
-
-  max-height: calc(100% - 42px);
-  object-fit: contain;
-
+  max-height: 560px;              /* keep height cap, but we’re mainly shrinking width */
+  margin: 0 auto;                 /* center */
   border-radius: 18px;
   border: 1px solid rgba(15,23,42,0.10);
   box-shadow: 0 18px 60px rgba(2,6,23,0.16);
   background: rgba(255,255,255,0.60);
+}
+
+/* If any slide uses <figure>, make it center too */
+.carousel__slide figure{
+  margin: 0;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
 }
 
 .carousel__slide figcaption{
@@ -168,15 +478,21 @@ a{ color: inherit; text-decoration: none; }
   font-family: var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  text-align: center;
+  text-align:center;
 }
 
-/* Dots */
+/* narrower screens: slightly smaller max width */
+@media (max-width: 640px){
+  :root{ --screen-max-w: var(--screen-max-w-sm); }
+  .carousel__slide{ padding: var(--s-3); }
+}
+
 .carousel__dots{
   display:flex;
   gap: 10px;
   justify-content:center;
   margin-top: var(--s-4);
+  flex-wrap: wrap;
 }
 .dot{
   width: 10px;
@@ -184,28 +500,19 @@ a{ color: inherit; text-decoration: none; }
   border-radius: 999px;
   border: 1px solid rgba(15,23,42,0.18);
   background: rgba(255,255,255,0.55);
+  cursor:pointer;
+  transition: transform 140ms ease, opacity 140ms ease, background 140ms ease;
   opacity: 0.75;
 }
+.dot:hover{ transform: scale(1.08); opacity: 0.95; }
 .dot.is-active{
   background: var(--grad-brand);
   opacity: 1;
+  border-color: rgba(255,255,255,0.24);
 }
 
-/* Mobile tuning */
-@media (max-width: 720px){
-  .carousel__slide img{
-    max-width: clamp(240px, 70vw, 380px);
-  }
-}
-
-/* =========================
-   Footer
-   ========================= */
-
-.footer{
-  margin-top: var(--s-6);
-  padding: var(--s-4);
-}
+/* Footer */
+.footer{ margin-top: var(--s-6); padding: var(--s-4); }
 .footer__inner{
   display:flex;
   align-items:center;
