@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  // Carousel
   const carousel = document.querySelector("[data-carousel]");
   if (!carousel) return;
 
@@ -21,7 +20,8 @@
 
   total.textContent = String(slides.length);
 
-  // Build dots
+  // Build dots (reset in case of hot reload)
+  dotsWrap.innerHTML = "";
   const dots = slides.map((_, i) => {
     const b = document.createElement("button");
     b.type = "button";
@@ -42,7 +42,6 @@
 
     dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
 
-    // Disable buttons at edges
     btnPrev.disabled = index === 0;
     btnNext.disabled = index === slides.length - 1;
     btnPrev.style.opacity = btnPrev.disabled ? "0.55" : "1";
@@ -53,14 +52,12 @@
     index = clamp(i, 0, slides.length - 1);
     update();
   }
-
   function next() { goTo(index + 1); }
   function prev() { goTo(index - 1); }
 
   btnNext.addEventListener("click", next);
   btnPrev.addEventListener("click", prev);
 
-  // Keyboard support (only when carousel is visible)
   function isCarouselVisible() {
     const rect = carousel.getBoundingClientRect();
     return rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
@@ -72,7 +69,7 @@
     if (e.key === "ArrowLeft") prev();
   });
 
-  // Swipe support
+  // Swipe
   viewport.addEventListener("pointerdown", (e) => {
     isDragging = true;
     startX = e.clientX;
@@ -100,6 +97,5 @@
     isDragging = false;
   });
 
-  // Init
   update();
 })();
