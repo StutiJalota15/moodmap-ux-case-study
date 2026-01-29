@@ -370,7 +370,7 @@ a:hover{ opacity: 0.92; }
 }
 .dot{
   width: 10px;
-  height: 10px;
+  height: 10px
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,0.08);
