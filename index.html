@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MoodMap — UX Case Study</title>
   <meta name="description" content="Mood-first place discovery to reduce decision fatigue. UX case study by Stuti Jalota." />
-  <link rel="stylesheet" href="styles.css?v=1.2" />
+  <link rel="stylesheet" href="styles.css?v=1.3" />
 </head>
 
 <body>
@@ -148,10 +148,10 @@
       <div class="container">
         <div class="sectionHead">
           <p class="kicker">02 — Research</p>
-          <h2 class="h2">I validated the problem before designing the solution</h2>
+          <h2 class="h2">Survey-backed validation (no guessing)</h2>
           <p class="p">
-            I conducted quick research to confirm decision fatigue behaviors, identify what creates uncertainty,
-            and test whether mood-first input reduces friction.
+            I ran a quick survey to validate decision fatigue behaviors, identify what creates uncertainty,
+            and confirm whether mood-first feels easier than filter-first.
           </p>
         </div>
 
@@ -165,9 +165,10 @@
             </ul>
 
             <div class="note">
-              <p class="note__k">Design principle from research</p>
+              <p class="note__k">Survey snapshot</p>
               <p class="note__v p">
-                The UI should feel like a guided decision — not a search task.
+                I used these findings to shape the flow: fewer recommendations, “why this fits” reasoning,
+                and a decision-support loop for the unsure moment.
               </p>
             </div>
           </div>
@@ -185,7 +186,7 @@
               </div>
               <div class="pill">
                 <p class="pill__t">Finding 3 — Mood is easier than filters</p>
-                <p class="p">Decision: mood-first cards, lightweight context after.</p>
+                <p class="p">Decision: mood-first entry, lightweight context after.</p>
               </div>
               <div class="pill">
                 <p class="pill__t">Finding 4 — Users drop off at the “unsure moment”</p>
@@ -193,24 +194,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card pad">
-            <p class="kicker">Insight → Decision</p>
-            <h3 class="h3">Curated results</h3>
-            <p class="p">Reduce cognitive load by limiting options shown at once.</p>
-          </article>
-          <article class="card pad">
-            <p class="kicker">Insight → Decision</p>
-            <h3 class="h3">Mood-first input</h3>
-            <p class="p">Start from how users feel — the natural entry point.</p>
-          </article>
-          <article class="card pad">
-            <p class="kicker">Insight → Decision</p>
-            <h3 class="h3">Decision support</h3>
-            <p class="p">Help users when they hesitate: compare or pick-for-me.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -223,7 +206,7 @@
           <h2 class="h2">Mood first. Context second. Support when users feel stuck.</h2>
           <p class="p">
             MoodMap guides users through a short flow:
-            adjust preferences → view curated recommendations with reasoning → save/share/navigate.
+            mood & preferences → curated recommendations with reasoning → save/share/navigate.
           </p>
         </div>
 
@@ -231,10 +214,10 @@
           <div class="card pad">
             <h3 class="h3">Key features</h3>
             <ul class="list">
+              <li><strong>Mood-first journey</strong> (vibe → context)</li>
               <li><strong>Preferences setup</strong> (budget, distance, group size)</li>
               <li><strong>Curated recommendations</strong> (few, relevant options)</li>
               <li><strong>Reasoning layer</strong> (“Why this fits your mood”)</li>
-              <li><strong>Decision support</strong> (compare / pick-for-me)</li>
               <li><strong>Saved places</strong> (navigate/share/remove)</li>
             </ul>
           </div>
@@ -252,17 +235,9 @@
               </div>
               <div class="pill">
                 <p class="pill__t">Improves completion</p>
-                <p class="p">Save/share/navigation supports real action after deciding.</p>
+                <p class="p">Decision support + save/share/navigation supports real action.</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="callout card">
-          <div class="callout__icon" aria-hidden="true">✓</div>
-          <div class="callout__content">
-            <p class="callout__title">Success definition</p>
-            <p class="p">A successful session ends with a confident choice — not endless browsing.</p>
           </div>
         </div>
       </div>
@@ -280,18 +255,29 @@
           </p>
         </div>
 
-        <div class="grid-2">
-          <div class="card pad">
+        <!-- FIXED alignment with equal-height + centered images -->
+        <div class="grid-2 grid-2--equal">
+          <div class="card pad flowCard">
             <h3 class="h3">Primary user flow</h3>
-            <div class="imgFrame">
-              <img src="assets/primary-user-flow-screen-journey.png" alt="Primary user flow - screen journey" loading="lazy" />
+            <div class="imgFrame imgFrame--center">
+              <img
+                class="flowImg"
+                src="assets/primary-user-flow-screen-journey.png"
+                alt="Primary user flow - screen journey"
+                loading="lazy"
+              />
             </div>
           </div>
 
-          <div class="card pad">
+          <div class="card pad flowCard">
             <h3 class="h3">Decision support flow</h3>
-            <div class="imgFrame">
-              <img src="assets/decision-support-flow.png" alt="Decision support flow diagram" loading="lazy" />
+            <div class="imgFrame imgFrame--center">
+              <img
+                class="flowImg flowImg--narrow"
+                src="assets/decision-support-flow.png"
+                alt="Decision support flow diagram"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
@@ -303,9 +289,9 @@
       <div class="container">
         <div class="sectionHead">
           <p class="kicker">05 — UI screens</p>
-          <h2 class="h2">High-signal screens (only what proves the concept)</h2>
+          <h2 class="h2">High-signal screens (5 screens only)</h2>
           <p class="p">
-            Only the highest-signal screens: preferences → recommendations → saved places.
+            Enough to understand the product: entry → refine → results → details → save.
           </p>
         </div>
 
@@ -313,7 +299,7 @@
           <div class="carousel__top">
             <div>
               <p class="kicker">MoodMap</p>
-              <p class="p">Screens: <span data-slide-label>1</span> / <span data-slide-total>3</span></p>
+              <p class="p">Screens: <span data-slide-label>1</span> / <span data-slide-total>5</span></p>
             </div>
 
             <div class="carousel__controls">
@@ -324,6 +310,16 @@
 
           <div class="carousel__viewport" data-viewport>
             <div class="carousel__track" data-track>
+
+              <figure class="carousel__slide" data-slide>
+                <img src="assets/img-01.png" alt="MoodMap — Screen 1" loading="lazy" />
+                <figcaption>Entry / Mood-first start</figcaption>
+              </figure>
+
+              <figure class="carousel__slide" data-slide>
+                <img src="assets/img-05.png" alt="MoodMap — Screen 2" loading="lazy" />
+                <figcaption>Refine by cuisine (optional)</figcaption>
+              </figure>
 
               <figure class="carousel__slide" data-slide>
                 <img src="assets/img-02.png" alt="MoodMap — Adjust preferences screen" loading="lazy" />
@@ -363,19 +359,19 @@
           <article class="card pad impactCard">
             <p class="impactCard__k">Why behind the idea</p>
             <h3 class="h3">Mood is the real input.</h3>
-            <p class="p">People decide on vibe first — filters should support, not lead.</p>
+            <p class="p">People decide on vibe first — filters support, not lead.</p>
           </article>
 
           <article class="card pad impactCard">
             <p class="impactCard__k">Need behind the product</p>
             <h3 class="h3">Decision fatigue is a UX problem.</h3>
-            <p class="p">Choice overload creates uncertainty. MoodMap reduces both effort and options.</p>
+            <p class="p">Choice overload creates uncertainty. MoodMap reduces effort + options.</p>
           </article>
 
           <article class="card pad impactCard">
             <p class="impactCard__k">Why it’s successful</p>
             <h3 class="h3">It helps users finish.</h3>
-            <p class="p">Save/share/navigation supports real action after deciding.</p>
+            <p class="p">Decision support + action layer (save/share/navigate) completes the journey.</p>
           </article>
         </div>
 
@@ -392,6 +388,6 @@
     </section>
   </main>
 
-  <script src="script.js?v=1.2"></script>
+  <script src="script.js?v=1.3"></script>
 </body>
 </html>
