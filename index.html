@@ -144,59 +144,72 @@
     </section>
 
     <!-- Research -->
-    <section id="research" class="section">
-      <div class="container">
-        <div class="sectionHead">
-          <p class="kicker">02 — Research</p>
-          <h2 class="h2">Survey-backed validation (no guessing)</h2>
-          <p class="p">
-            I ran a quick survey to validate decision fatigue behaviors, identify what creates uncertainty,
-            and confirm whether mood-first feels easier than filter-first.
-          </p>
+   <section id="research" class="section">
+  <div class="container">
+    <div class="sectionHead">
+      <p class="kicker">02 — Research</p>
+      <h2 class="h2">Survey findings that shaped the product</h2>
+      <p class="p">
+        I ran a Google Forms survey (40 responses) to validate how people choose places across different situations
+        (date, friends, office, solo, celebration) and what makes decisions stressful.
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card pad">
+        <h3 class="h3">Survey highlights (40 responses)</h3>
+        <ul class="list">
+          <li><strong>Ambience is situational:</strong> “Depends on the situation” was the top choice (<strong>42.5%</strong>).</li>
+          <li><strong>Trust is social + real:</strong> Friends’ recommendations (<strong>57.5%</strong>) and Google Maps reviews (<strong>50%</strong>) were most trusted.</li>
+          <li><strong>Choice changes by context:</strong> “Safest” office meetup option leaned toward Café/Bakery (<strong>37.5%</strong>).</li>
+        </ul>
+
+        <div class="note">
+          <p class="note__k">Context matrix (top picks)</p>
+          <ul class="list">
+            <li><strong>Date:</strong> Indian (55%), Italian (52.5%), Café/Bakery (45%)</li>
+            <li><strong>Friends:</strong> Indian (72.5%), Chinese (62.5%), Mexican (30%)</li>
+            <li><strong>Solo/After-work:</strong> Indian (50%), Chinese (35%), Café/Bakery (32.5%)</li>
+            <li><strong>Celebration:</strong> Indian (70%), Italian (32.5%), American (20%)</li>
+          </ul>
         </div>
+      </div>
 
-        <div class="grid-2">
-          <div class="card pad">
-            <h3 class="h3">Research goal</h3>
-            <ul class="list">
-              <li>Validate decision fatigue (overwhelm, hesitation, abandonment)</li>
-              <li>Understand what makes users feel “stuck”</li>
-              <li>Evaluate if mood-first feels easier than filter-first</li>
-            </ul>
-
-            <div class="note">
-              <p class="note__k">Survey snapshot</p>
-              <p class="note__v p">
-                I used these findings to shape the flow: fewer recommendations, “why this fits” reasoning,
-                and a decision-support loop for the unsure moment.
-              </p>
-            </div>
+      <div class="card pad">
+        <h3 class="h3">Findings → Product decisions</h3>
+        <div class="stack">
+          <div class="pill">
+            <p class="pill__t">Insight: Users decide based on situation, not generic filters</p>
+            <p class="p">Decision: Mood-first entry + context setup (date / friends / office / solo / celebration).</p>
           </div>
-
-          <div class="card pad">
-            <h3 class="h3">Key findings (and what they drove)</h3>
-            <div class="stack">
-              <div class="pill">
-                <p class="pill__t">Finding 1 — Too many options increases uncertainty</p>
-                <p class="p">Decision: show fewer, more relevant recommendations.</p>
-              </div>
-              <div class="pill">
-                <p class="pill__t">Finding 2 — Ratings don’t feel situational</p>
-                <p class="p">Decision: include “Why this fits your mood” explanations.</p>
-              </div>
-              <div class="pill">
-                <p class="pill__t">Finding 3 — Mood is easier than filters</p>
-                <p class="p">Decision: mood-first entry, lightweight context after.</p>
-              </div>
-              <div class="pill">
-                <p class="pill__t">Finding 4 — Users drop off at the “unsure moment”</p>
-                <p class="p">Decision: compare options + “pick for me” loop.</p>
-              </div>
-            </div>
+          <div class="pill">
+            <p class="pill__t">Insight: People trust friends + Google reviews most</p>
+            <p class="p">Decision: Show “why this fits” + surface trust signals (review cues / social-style reasoning).</p>
+          </div>
+          <div class="pill">
+            <p class="pill__t">Insight: Too many options + fear of regret creates stress</p>
+            <p class="p">Decision: Curate fewer recommendations + add a decision support loop (compare / pick for me).</p>
+          </div>
+          <div class="pill">
+            <p class="pill__t">Insight: Ambience preferences are dynamic</p>
+            <p class="p">Decision: Mood tags (cozy/romantic/relaxed) + context-aware suggestions.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="callout card">
+      <div class="callout__icon" aria-hidden="true">“</div>
+      <div class="callout__content">
+        <p class="callout__title">What users said (themes)</p>
+        <p class="p">
+          Common stress triggers included “too many options,” “fake reviews,” “time pressure,”
+          and “fear of making the wrong choice,” especially when deciding for groups.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Solution -->
     <section id="solution" class="section">
