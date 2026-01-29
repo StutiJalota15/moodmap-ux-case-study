@@ -1,18 +1,21 @@
 /* =========================
-   MoodMap Design System v1
+   MoodMap Design System v1.1
+   (lighter background + better flow alignment)
    ========================= */
 
 :root{
-  --bg-0: #0B0F1A;
-  --bg-1: rgba(255,255,255,0.06);
-  --bg-2: rgba(255,255,255,0.10);
+  /* Lightened base */
+  --bg-0: #121A2A;                 /* was #0B0F1A */
+  --bg-0b: #0E1524;                /* deeper accent for sections */
+  --bg-1: rgba(255,255,255,0.075);
+  --bg-2: rgba(255,255,255,0.12);
 
-  --stroke-1: rgba(255,255,255,0.10);
-  --stroke-2: rgba(255,255,255,0.16);
+  --stroke-1: rgba(255,255,255,0.12);
+  --stroke-2: rgba(255,255,255,0.18);
 
-  --text-1: rgba(255,255,255,0.92);
-  --text-2: rgba(255,255,255,0.72);
-  --text-3: rgba(255,255,255,0.54);
+  --text-1: rgba(255,255,255,0.93);
+  --text-2: rgba(255,255,255,0.74);
+  --text-3: rgba(255,255,255,0.56);
 
   --brand-1: #5B7CFF;
   --brand-2: #22D3EE;
@@ -20,8 +23,8 @@
 
   --grad-brand: linear-gradient(135deg, var(--brand-1), #3B82F6 55%, var(--brand-2));
 
-  --shadow-1: 0 10px 30px rgba(0,0,0,0.35);
-  --shadow-2: 0 18px 60px rgba(0,0,0,0.45);
+  --shadow-1: 0 10px 30px rgba(0,0,0,0.30);
+  --shadow-2: 0 18px 60px rgba(0,0,0,0.38);
 
   --r-1: 14px;
   --r-2: 18px;
@@ -37,7 +40,7 @@
 
   --container: 1120px;
 
-  --glass-blur: 20px;
+  --glass-blur: 18px;
   --glass-sat: 140%;
 
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -51,10 +54,10 @@ body{
   font-family: var(--font);
   color: var(--text-1);
   background:
-    radial-gradient(900px 420px at 25% 10%, rgba(91,124,255,0.22), transparent 55%),
-    radial-gradient(720px 420px at 80% 0%, rgba(34,211,238,0.16), transparent 55%),
-    radial-gradient(900px 520px at 65% 90%, rgba(155,123,255,0.10), transparent 60%),
-    var(--bg-0);
+    radial-gradient(900px 520px at 25% 10%, rgba(91,124,255,0.22), transparent 58%),
+    radial-gradient(720px 520px at 80% 0%, rgba(34,211,238,0.16), transparent 60%),
+    radial-gradient(900px 620px at 65% 92%, rgba(155,123,255,0.12), transparent 62%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-0b) 65%, var(--bg-0));
   line-height: 1.55;
 }
 
@@ -71,7 +74,7 @@ a:hover{ opacity: 0.92; }
 .section--tight{ padding: var(--s-6) 0; }
 .hr{
   height:1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
   margin: var(--s-6) 0;
 }
 
@@ -114,17 +117,17 @@ a:hover{ opacity: 0.92; }
   gap: 10px;
   padding: 12px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.09);
   color: var(--text-1);
   cursor:pointer;
   transition: transform 160ms ease, background 160ms ease, border 160ms ease, opacity 160ms ease;
   font: inherit;
 }
-.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.18); }
+.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.20); }
 .btn--primary{
   background: var(--grad-brand);
-  border-color: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.20);
 }
 .btn:focus{
   outline: 2px solid rgba(91,124,255,0.65);
@@ -135,10 +138,10 @@ a:hover{ opacity: 0.92; }
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  background: rgba(10,14,24,0.55);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  background: rgba(18,26,42,0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.09);
 }
 
 .topbar__inner{
@@ -185,7 +188,7 @@ a:hover{ opacity: 0.92; }
 }
 .nav a:hover{
   color: var(--text-1);
-  border-color: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.06);
 }
 
@@ -205,7 +208,7 @@ a:hover{ opacity: 0.92; }
 .hero__preview{
   border-radius: calc(var(--r-3) - 6px);
   overflow:hidden;
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .hero__rightMeta{ padding: var(--s-4); display:grid; gap: var(--s-3); }
 .meta__k{ margin:0; color: var(--text-3); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -215,8 +218,8 @@ a:hover{ opacity: 0.92; }
 .chip{
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
   color: var(--text-2);
   font-size: 13px;
 }
@@ -250,6 +253,9 @@ a:hover{ opacity: 0.92; }
   grid-template-columns: 1.15fr 0.85fr;
   gap: var(--s-5);
 }
+.grid-2--equal{
+  grid-template-columns: 1fr 1fr;
+}
 .grid-3{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -257,7 +263,7 @@ a:hover{ opacity: 0.92; }
   margin-top: var(--s-5);
 }
 @media (max-width: 960px){
-  .grid-2{ grid-template-columns: 1fr; }
+  .grid-2, .grid-2--equal{ grid-template-columns: 1fr; }
   .grid-3{ grid-template-columns: 1fr; }
 }
 
@@ -278,11 +284,10 @@ a:hover{ opacity: 0.92; }
 .callout__icon{
   width: 34px; height: 34px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.14);
   display:grid;
   place-items:center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 .callout__title{
   margin:0 0 6px 0;
@@ -293,8 +298,8 @@ a:hover{ opacity: 0.92; }
   margin-top: var(--s-4);
   padding: 12px 14px;
   border-radius: var(--r-2);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
 }
 .note__k{ margin:0; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
 .note__v{ margin:6px 0 0 0; }
@@ -303,17 +308,39 @@ a:hover{ opacity: 0.92; }
 .pill{
   padding: 12px 14px;
   border-radius: var(--r-2);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
 }
 .pill__t{ margin:0 0 6px 0; font-weight: 700; }
 
+/* Flow cards alignment fix */
+.flowCard{
+  display:flex;
+  flex-direction: column;
+  min-height: 520px; /* keeps both columns same “presence” */
+}
 .imgFrame{
   margin-top: var(--s-3);
   border-radius: var(--r-2);
   overflow:hidden;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.14);
+  flex: 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: var(--s-4);
+}
+.imgFrame--center img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.flowImg{
+  max-height: 520px;
+}
+.flowImg--narrow{
+  max-width: 430px; /* centers the narrower decision flow nicely */
 }
 
 /* Carousel */
@@ -330,8 +357,8 @@ a:hover{ opacity: 0.92; }
 .carousel__viewport{
   overflow:hidden;
   border-radius: var(--r-2);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.14);
 }
 .carousel__track{
   display:flex;
@@ -350,8 +377,8 @@ a:hover{ opacity: 0.92; }
   max-height: 560px;
   width: auto;
   border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.30);
 }
 .carousel__slide figcaption{
   color: var(--text-3);
@@ -370,19 +397,19 @@ a:hover{ opacity: 0.92; }
 }
 .dot{
   width: 10px;
-  height: 10px
+  height: 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(255,255,255,0.10);
   cursor:pointer;
   transition: transform 140ms ease, opacity 140ms ease, background 140ms ease;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 .dot:hover{ transform: scale(1.08); opacity: 0.95; }
 .dot.is-active{
   background: var(--grad-brand);
   opacity: 1;
-  border-color: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.24);
 }
 
 /* Footer */
