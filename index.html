@@ -1,1 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MoodMap — UX Case Study</title>
+  <meta name="description" content="Mood-first place discovery to reduce decision fatigue. UX case study by Stuti Jalota." />
+  <link rel="stylesheet" href="styles.css?v=1.2" />
+</head>
+
+<body>
+  <!-- Top Nav -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#top" aria-label="MoodMap Home">
+        <span class="brand__dot"></span>
+        <span class="brand__name">MoodMap</span>
+        <span class="brand__sub">UX Case Study</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#problem">Problem</a>
+        <a href="#research">Research</a>
+        <a href="#solution">Solution</a>
+        <a href="#system">System</a>
+        <a href="#screens">Screens</a>
+        <a href="#impact">Impact</a>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--primary" href="#screens">View Screens</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="section hero">
+      <div class="container hero__grid">
+        <div class="hero__left">
+          <p class="kicker">Mood-first place discovery</p>
+          <h1 class="h1">
+            Helping people decide <span class="grad">where to go</span>
+            without overthinking.
+          </h1>
+          <p class="hero__sub p">
+            MoodMap turns “how I feel” into context-aware recommendations — so users don’t have to translate emotions
+            into heavy filters like price, distance, and ratings.
+          </p>
+
+          <div class="chips" role="list">
+            <span class="chip" role="listitem">Role: UX / Product Design</span>
+            <span class="chip" role="listitem">Focus: Decision fatigue → confident choices</span>
+            <span class="chip" role="listitem">Deliverables: Flows, UI, product logic</span>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#problem">Read Case Study</a>
+            <a class="btn" href="#screens">Jump to Screens</a>
+          </div>
+
+          <div class="mini card">
+            <div class="mini__row">
+              <div>
+                <p class="mini__label">Core idea</p>
+                <p class="mini__value">Mood → Context → Few relevant options</p>
+              </div>
+              <div>
+                <p class="mini__label">Decision support</p>
+                <p class="mini__value">Compare / Pick for me</p>
+              </div>
+              <div>
+                <p class="mini__label">Outcome</p>
+                <p class="mini__value">Less time → more confidence</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero__right card">
+          <div class="hero__preview">
+            <!-- Using an existing asset as the hero preview -->
+            <img
+              src="assets/img-03.png"
+              alt="MoodMap UI preview (Recommendations screen)"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="hero__rightMeta">
+            <div class="meta">
+              <p class="meta__k">Design question</p>
+              <p class="meta__v">How can we help people decide where to go without decision fatigue?</p>
+            </div>
+
+            <div class="meta">
+              <p class="meta__k">What makes this different</p>
+              <p class="meta__v">Starts with mood (human) and applies constraints quietly (system).</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="container"><div class="hr"></div></div>
+
+    <!-- Problem -->
+    <section id="problem" class="section section--tight">
+      <div class="container">
+        <div class="sectionHead">
+          <p class="kicker">01 — Problem</p>
+          <h2 class="h2">Decision fatigue during place discovery</h2>
+          <p class="p">
+            People don’t struggle because there are “no options.” They struggle because there are too many,
+            and most apps force filter-based thinking instead of mood-based thinking.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card pad">
+            <h3 class="h3">What users feel</h3>
+            <p class="p">Overwhelm → endless scrolling → second guessing → “I don’t know.”</p>
+          </article>
+          <article class="card pad">
+            <h3 class="h3">What fails today</h3>
+            <p class="p">Ratings lack context. Filters add work. Users can’t convert emotions into search criteria.</p>
+          </article>
+          <article class="card pad">
+            <h3 class="h3">Product opportunity</h3>
+            <p class="p">Start with mood, narrow with lightweight context, and support the “unsure moment.”</p>
+          </article>
+        </div>
+
+        <div class="callout card">
+          <div class="callout__icon" aria-hidden="true">✦</div>
+          <div class="callout__content">
+            <p class="callout__title">Product thesis</p>
+            <p class="p">
+              If we reduce decision effort (mood-first) and reduce the number of options (curated results),
+              users will choose faster and feel more confident.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research (No forms link; only findings) -->
+    <section id="research" class="section">
+      <div class="container">
+        <div class="sectionHead">
+          <p class="kicker">02 — Research</p>
+          <h2 class="h2">I validated the decision fatigue problem before designing the solution</h2>
+          <p class="p">
+            I conducted quick research to confirm decision fatigue behaviors, identify what creates uncertainty,
+            and test whether mood-first input would reduce friction.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card pad">
+            <h3 class="h3">Research goal</h3>
+            <ul class="list">
+              <li>Validate decision fatigue (overwhelm, hesitation, abandonment)</li>
+              <li>Understand what makes users feel “stuck”</li>
+              <li>Evaluate if mood-first feels easier than filter-first</li>
+            </ul>
+
+            <div class="note">
+              <p class="note__k">Design principle from research</p>
+              <p class="note__v p">
+                The UI should feel like a guided decision — not a search task.
+              </p>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <h3 class="h3">Key findings (and what they drove)</h3>
+            <div class="stack">
+              <div class="pill">
+                <p class="pill__t">Finding 1 — Too many options increases uncertainty</p>
+                <p class="p">Decision support: show fewer, more relevant recommendations.</p>
+              </div>
+              <div class="pill">
+                <p class="pill__t">Finding 2 — Ratings don’t feel situational</p>
+                <p class="p">Design response: include “Why this fits your mood” explanations.</p>
+              </div>
+              <div class="pill">
+                <p class="pill__t">Finding 3 — Mood is easier than filters</p>
+                <p class="p">Design response: mood-first cards, with lightweight context after.</p>
+              </div>
+              <div class="pill">
+                <p class="pill__t">Finding 4 — Users drop off at the “unsure moment”</p>
+                <p class="p">Design response: compare options + “pick for me” loop.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card pad">
+            <p class="kicker">Insight → Decision</p>
+            <h3 class="h3">Curated results</h3>
 
