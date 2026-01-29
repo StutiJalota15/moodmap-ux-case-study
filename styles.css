@@ -1,5 +1,5 @@
 /* =========================
-   (carousel card hugs content + no image compression + button hover text fix)
+   (all buttons use gradient color + glow pop hover)
    ========================= */
 
 :root{
@@ -15,9 +15,14 @@
   --text-2: rgba(15,23,42,0.70);
   --text-3: rgba(15,23,42,0.52);
 
-  --brand-1: #5B7CFF;
+  /* Brand */
+  --brand-1: #4D7CFF;
   --brand-2: #22D3EE;
   --brand-3: #9B7BFF;
+
+  /* Button gradient (matches your screenshot vibe) */
+  --btn-grad: linear-gradient(135deg, #4F82FF 0%, #2D6CFF 40%, #22D3EE 100%);
+  --btn-grad-hover: linear-gradient(135deg, #5A8BFF 0%, #2F74FF 40%, #33E0F6 100%);
 
   --grad-brand: linear-gradient(135deg, var(--brand-1), #3B82F6 55%, var(--brand-2));
 
@@ -46,7 +51,11 @@
   --s-7: 56px;
 
   /* controls the “screens card” width (NOT the image) */
-  --screens-card-max: 920px;  /* change this if you want narrower/wider card */
+  --screens-card-max: 920px;
+
+  /* Button glow tuning */
+  --btn-glow-1: rgba(79,130,255,0.55);
+  --btn-glow-2: rgba(34,211,238,0.45);
 }
 
 /* Prevent weird overflow + accidental horizontal scroll */
@@ -67,9 +76,7 @@ img{ max-width:100%; display:block; }
 
 /* Links */
 a{ color: inherit; text-decoration: none; }
-/* ✅ DO NOT fade text on hover globally */
 a:hover{ opacity: 1; }
-/* Optional: only fade normal links, not buttons */
 a:not(.btn):hover{ opacity: 0.92; }
 
 .container{
@@ -119,58 +126,101 @@ a:not(.btn):hover{ opacity: 0.92; }
 .pad{ padding: var(--s-5); }
 
 /* =========================
-   Buttons (hard-fix hover disappearing)
+   Buttons (ALL buttons = gradient + glow hover)
    ========================= */
 .btn,
 a.btn{
+  position: relative;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap: 10px;
-  padding: 12px 16px;
+  padding: 12px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(15,23,42,0.12);
-  background: rgba(255,255,255,0.66);
-  color: var(--text-1);
+
+  /* ✅ all buttons now use your gradient */
+  background: var(--btn-grad);
+  color: #fff !important;
+
+  border: 1px solid rgba(255,255,255,0.28);
+  box-shadow:
+    0 12px 30px rgba(79,130,255,0.18),
+    0 10px 24px rgba(2,6,23,0.10);
+
   cursor:pointer;
-  transition: transform 160ms ease, background 160ms ease, border 160ms ease, box-shadow 160ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease,
+    background 180ms ease;
   font: inherit;
   white-space: nowrap;
   text-decoration: none;
   opacity: 1 !important;
+  isolation: isolate; /* ensures glow layer stays behind */
 }
 .btn *, a.btn * { opacity: 1 !important; }
 
+/* glow layer behind button */
+.btn::before,
+a.btn::before{
+  content:"";
+  position:absolute;
+  inset: -12px;             /* glow spread */
+  border-radius: 999px;
+  background:
+    radial-gradient(60% 120% at 30% 50%, var(--btn-glow-1), transparent 60%),
+    radial-gradient(70% 140% at 80% 50%, var(--btn-glow-2), transparent 62%);
+  filter: blur(14px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 180ms ease, transform 180ms ease;
+  transform: scale(0.98);
+}
+
+/* ✅ pop + glow on hover */
 .btn:hover,
 a.btn:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,0.78);
-  border-color: rgba(15,23,42,0.16);
-  color: var(--text-1) !important;
+  transform: translateY(-2px) scale(1.02);
+  background: var(--btn-grad-hover);
+  box-shadow:
+    0 18px 44px rgba(79,130,255,0.28),
+    0 18px 46px rgba(34,211,238,0.14),
+    0 10px 24px rgba(2,6,23,0.12);
+  filter: saturate(1.06);
   opacity: 1 !important;
 }
-
-.btn--primary,
-a.btn--primary{
-  background: var(--grad-brand);
-  border-color: rgba(255,255,255,0.24);
-  color: #fff !important;
-  box-shadow: 0 10px 26px rgba(91,124,255,0.20);
-}
-.btn--primary:hover,
-a.btn--primary:hover{
-  color: #fff !important;
-  opacity: 1 !important;
-  box-shadow: 0 14px 34px rgba(91,124,255,0.24);
+.btn:hover::before,
+a.btn:hover::before{
+  opacity: 1;
+  transform: scale(1.02);
 }
 
-.btn:focus{
-  outline: 2px solid rgba(91,124,255,0.55);
+/* active press */
+.btn:active,
+a.btn:active{
+  transform: translateY(0px) scale(0.99);
+  box-shadow:
+    0 10px 26px rgba(79,130,255,0.20),
+    0 8px 18px rgba(2,6,23,0.10);
+}
+
+/* focus */
+.btn:focus,
+a.btn:focus{
+  outline: 2px solid rgba(79,130,255,0.55);
   outline-offset: 3px;
 }
 
+/* keep the class for semantics, but same style now */
+.btn--primary,
+a.btn--primary{
+  background: var(--btn-grad);
+  color: #fff !important;
+}
+
 /* =========================
-   Topbar (side padding + centered content)
+   Topbar
    ========================= */
 .topbar{
   position: sticky;
@@ -239,11 +289,8 @@ a.btn--primary:hover{
   gap: 10px;
   align-items:center;
 }
-.topbar__cta .btn{ padding: 10px 14px; }
 
-/* =========================
-   Hero
-   ========================= */
+/* Hero */
 .hero{
   padding-top: 40px;
   padding-bottom: 36px;
@@ -375,8 +422,6 @@ a.btn--primary:hover{
   border: 1px solid rgba(15,23,42,0.10);
   background: rgba(255,255,255,0.55);
 }
-.note__k{ margin:0; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
-.note__v{ margin:6px 0 0 0; }
 
 .stack{ display:grid; gap: 12px; margin-top: 12px; }
 .pill{
@@ -387,9 +432,7 @@ a.btn--primary:hover{
 }
 .pill__t{ margin:0 0 6px 0; font-weight: 700; }
 
-/* =========================
-   Flow cards alignment fix
-   ========================= */
+/* Flow */
 .flowCard{
   display:flex;
   flex-direction: column;
@@ -428,16 +471,15 @@ a.btn--primary:hover{
 }
 
 /* =========================
-   Carousel — FIXED (card hugs image)
+   Carousel (card hugs image)
    ========================= */
 .carousel{
   padding: var(--s-5);
   display:flex;
   flex-direction:column;
-  align-items:center; /* centers the whole component */
+  align-items:center;
 }
 
-/* top row stays full width of the carousel card */
 .carousel__top{
   width: 100%;
   display:flex;
@@ -446,33 +488,29 @@ a.btn--primary:hover{
   gap: var(--s-4);
   margin-bottom: var(--s-4);
 }
-
 .carousel__controls{ display:flex; gap: 10px; }
 
-/* viewport becomes “content-sized card” */
 .carousel__viewport{
-  width: fit-content;                 /* key: hug content */
+  width: fit-content;
   max-width: min(var(--screens-card-max), 100%);
   margin: 0 auto;
   overflow:hidden;
   border-radius: var(--r-2);
   border: 1px solid rgba(15,23,42,0.10);
   background: rgba(255,255,255,0.45);
-  padding: 0;                         /* no extra space */
+  padding: 0;
 }
 
-/* track slides */
 .carousel__track{
   display:flex;
   will-change: transform;
   transition: transform 320ms ease;
 }
 
-/* slide width == viewport width (carousel still works) */
 .carousel__slide{
   min-width: 100%;
   margin:0;
-  padding: var(--s-4);                /* small breathing room */
+  padding: var(--s-4);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -481,12 +519,11 @@ a.btn--primary:hover{
   box-sizing: border-box;
 }
 
-/* DO NOT force width — keep original image size but limit it to viewport */
 .carousel__slide img{
-  width: auto;                        /* no compression */
+  width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 72vh;                   /* keeps it from overflowing vertically */
+  max-height: 72vh;
   margin: 0 auto;
   border-radius: 18px;
   border: 1px solid rgba(15,23,42,0.10);
@@ -503,7 +540,6 @@ a.btn--primary:hover{
   text-align:center;
 }
 
-/* dots */
 .carousel__dots{
   display:flex;
   gap: 10px;
